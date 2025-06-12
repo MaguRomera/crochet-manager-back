@@ -14,4 +14,6 @@ app.get(`/stock`, routes.stock.getAll)
 app.get(`/stock/:id`, routes.stock.getById)
 app.put(`/stock/:id`, routes.stock.update)
 app.post(`/stock`, routes.stock.create)
-app.delete(`/stock/:id`, routes.stock.delete)
+app.delete(`/stock/:id`, routes.stock.remove)
+
+module.exports = app;
