@@ -15,9 +15,11 @@ async function init() {
 	}
 
     // sync models (create tables if they don't exist)
-    await sequelize.sync();
-
-	console.log(`Starting Sequelize + Express example on port ${PORT}...`);
+   	sequelize.sync({ force: false })
+	.then(() => {
+		console.log('Tablas sincronizadas');
+	})
+	.catch(err => console.error('Error al sincronizar:', err));
 
 	// start express server
     app.listen(PORT, () => {

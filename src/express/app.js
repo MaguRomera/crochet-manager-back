@@ -15,5 +15,6 @@ app.get(`/stock/:id`, routes.stock.getById)
 app.put(`/stock/:id`, routes.stock.update)
 app.post(`/stock`, routes.stock.create)
 app.delete(`/stock/:id`, routes.stock.remove)
-
+//endpoints proyecto
+//endpoints cuentavueltas
 module.exports = app;
