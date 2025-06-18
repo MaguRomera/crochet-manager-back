@@ -101,6 +101,7 @@ sequelize.define('cuentavueltas', {
 })
 
 
+
 //asociaciones
 const {
     stock,
