@@ -1,9 +1,30 @@
 const {models} = require('../../sequelize')
 
+const { Sequelize } = require('sequelize')
+
+
 async function getAll(req, res) {
-	const stocks = await models.stock.findAll();
-	res.status(200).json(stocks);
-};
+    const { q } = req.query;
+    let where = {};
+
+    if (q) {
+        where = {
+            [Sequelize.Op.or]: [
+                { material: { [Sequelize.Op.like]: `%${q}%` } },
+                { color: { [Sequelize.Op.like]: `%${q}%` } },
+                { grosor: { [Sequelize.Op.like]: `%${q}%` } }
+            ]
+        };
+    }
+
+    try {
+        const stocks = await models.stock.findAll({ where });
+        res.status(200).json(stocks);
+    } catch (error) {
+        console.error("ERROR EN GET ALL:", error);
+        res.status(500).json({ message: "Error interno", error });
+    }
+}
 
 async function getById(req, res) {
 	const id = req.params.id;

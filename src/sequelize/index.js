@@ -64,14 +64,13 @@ sequelize.define('proyecto',{
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    ganchoecomendado: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     precio: {
         type: DataTypes.INTEGER,
         allowNull: true
-    },
-    terminado: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
     },
     notas: {
     type: DataTypes.TEXT, 
