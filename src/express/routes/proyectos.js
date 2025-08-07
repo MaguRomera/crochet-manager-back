@@ -1,9 +1,24 @@
 const {models} = require('../../sequelize')
+const { Sequelize } = require('sequelize')
 
 async function getAll(req, res) {
-	const proyectos = await models.proyecto.findAll();
-	res.status(200).json(proyectos);
-};
+    const { q } = req.query;
+    let where = {};
+    if (q) {
+        where = {
+            [Sequelize.Op.or]: [
+                { nombre: { [Sequelize.Op.like]: `%${q}%` } }
+            ]
+        };
+    }
+    try {
+        const proyectos = await models.proyecto.findAll({ where });
+        res.status(200).json(proyectos);
+    } catch (error) {
+        console.error("ERROR EN GET ALL DE PROYECTO:", error);
+        res.status(500).json({ message: "Error interno", error });
+    }
+}
 
 async function getById(req, res) {
 	const id = req.params.id;
@@ -47,6 +62,7 @@ async function remove(req, res) {
 	});
 	res.status(200).end();
 };
+
 //handlers
 module.exports = {
 	getAll,

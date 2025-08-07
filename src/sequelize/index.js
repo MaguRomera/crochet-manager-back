@@ -54,17 +54,14 @@ sequelize.define('proyecto',{
     },
     patron: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     temporada: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    categoría: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    ganchoecomendado: {
+
+    ganchorecomendado: {
         type: DataTypes.INTEGER,
         allowNull: false
     },

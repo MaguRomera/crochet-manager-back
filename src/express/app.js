@@ -7,6 +7,7 @@ app.use(cors())
 
 const routes = {
     stock: require('../express/routes/stock'),
+    proyectos: require('../express/routes/proyectos'),
 }
 
 
@@ -19,7 +20,12 @@ app.get(`/stock/:id`, routes.stock.getById)
 app.put(`/stock/:id`, routes.stock.update)
 app.post(`/stock`, routes.stock.create)
 app.delete(`/stock/:id`, routes.stock.remove)
-//endpoints proyecto        
+//endpoints proyecto 
+app.get(`/proyectos`, routes.proyectos.getAll)
+app.get(`/proyectos/:id`, routes.proyectos.getById)
+app.put(`/proyectos/:id`, routes.proyectos.update)
+app.post(`/proyectos`, routes.proyectos.create)
+app.delete(`/proyectos/:id`, routes.proyectos.remove)       
 //endpoints cuentavueltas
 
 module.exports = app;
